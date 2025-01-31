@@ -1,8 +1,14 @@
 // App.js
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import Sachin from "./Sachin"
 
-function App() {
+const MainPage=()=>{
+const navigate=useNavigate()
+  const handleClick=()=>{
+    navigate("/sachin")
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -46,7 +52,9 @@ function App() {
             </div>
           </div>
 
-          <div className="team-member">
+          <div className="team-member" onClick={handleClick} style={{
+            cursor:"pointer"
+          }}>
             <img src="/sachin.jpg" alt="Sachin" className="profile-pic" />
             <h2>Sachin</h2>
             <p className="description">
@@ -68,6 +76,20 @@ function App() {
       </header>
     </div>
   );
+}
+
+function App() {
+
+  return (
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<MainPage/>}></Route>
+      <Route path='/sachin' element={<Sachin/>}></Route>
+
+    </Routes>
+    </BrowserRouter>
+  )
+ 
 }
 
 export default App;
